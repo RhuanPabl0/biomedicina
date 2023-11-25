@@ -1,0 +1,6 @@
+CREATE TABLE (
+     id INTEGER PRIMARY KEY,
+     cod INTEGER NOT NULL,
+     descr TEXT NOT NULL,
+     valor DOUBLE NOT NULL
+    );
