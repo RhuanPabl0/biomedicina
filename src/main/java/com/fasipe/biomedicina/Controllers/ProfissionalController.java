@@ -1,0 +1,22 @@
+package com.fasipe.biomedicina.Controllers;
+
+import com.fasipe.biomedicina.profissional.ProfissionalRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/profissional")
+public class ProfissionalController {
+
+    @Autowired
+    private ProfissionalRepository profissionalRepository;
+
+    @GetMapping
+    private ResponseEntity getProfissional(){
+        var allProfissional = profissionalRepository.findAll();
+        return ResponseEntity.ok(allProfissional);
+    }
+}
