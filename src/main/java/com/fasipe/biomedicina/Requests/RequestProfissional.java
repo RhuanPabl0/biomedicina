@@ -1,4 +1,4 @@
-package com.fasipe.biomedicina.profissional;
+package com.fasipe.biomedicina.Requests;
 
 public record RequestProfissional(
 

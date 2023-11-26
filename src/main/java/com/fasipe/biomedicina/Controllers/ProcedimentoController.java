@@ -1,8 +1,8 @@
 package com.fasipe.biomedicina.Controllers;
 
-import com.fasipe.biomedicina.Procedimentos.Procedimentos;
-import com.fasipe.biomedicina.Procedimentos.ProcedimentosRepository;
-import com.fasipe.biomedicina.Procedimentos.RequestProcedimentos;
+import com.fasipe.biomedicina.Entitys.Procedimentos;
+import com.fasipe.biomedicina.Repositorys.ProcedimentosRepository;
+import com.fasipe.biomedicina.Requests.RequestProcedimentos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

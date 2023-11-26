@@ -1,4 +1,4 @@
-package com.fasipe.biomedicina.Procedimentos;
+package com.fasipe.biomedicina.Requests;
 
 public record RequestProcedimentos(
 

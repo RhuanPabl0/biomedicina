@@ -1,6 +1,6 @@
 package com.fasipe.biomedicina.Controllers;
 
-import com.fasipe.biomedicina.profissional.ProfissionalRepository;
+import com.fasipe.biomedicina.Repositorys.ProfissionalRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

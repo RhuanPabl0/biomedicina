@@ -1,5 +1,6 @@
-package com.fasipe.biomedicina.Procedimentos;
+package com.fasipe.biomedicina.Entitys;
 
+import com.fasipe.biomedicina.Requests.RequestProcedimentos;
 import jakarta.persistence.*;
 import lombok.*;
 
