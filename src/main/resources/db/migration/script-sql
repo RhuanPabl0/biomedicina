@@ -1,0 +1,296 @@
+create database biomedicina;
+
+use biomedicina;
+show tables;
+drop table ExameseAmostras;
+create table ExameseAmostras(
+		id int(5) auto_increment,
+		nomeexame varchar(50),
+		tipo bool,
+		dtrealizado date,
+		idcliente bigint(11),
+		idinforeferencia int(5),
+        primary key(id)
+);
+create table resultadoexame(
+		id int(5) auto_increment,
+		idcliente bigint(11),
+		idprocedimentos int(5),
+		idprofissional int(5),
+		idreferencia int(5),
+		linkresultado varchar(255),
+		dtresultado date,
+        primary key(id)
+);
+create table infoprocedimento(
+		id int(5) auto_increment,
+		idprocedimento int(5),
+		idprofissional int(5),
+		idpaciente bigint(11),
+		idinforeferencia int(5),
+        primary key(id)
+);
+
+alter table infoprocedimento add foreign key(idpaciente) references paciente(cpfpac);
+alter table infoprocedimento add foreign key(idprocedimento) references procedimentos(id);
+alter table infoprocedimento add foreign key(idprofissional) references profissional(codprof);
+alter table infoprocedimento add foreign key(idinforeferencia) references inforeferencia(id);
+
+
+create table procedimentos(
+		id int(5) auto_increment,
+        cod int(5),
+        descr varchar(255),
+        valor double(7,2),
+        primary key(id)
+);
+create table paciente (
+		cpfpac bigint(11) not null,
+		nomepac varchar(100) not null,
+		codpac int(10) not null,
+		telpac bigint(11) not null,
+		ceppac int(8),
+		lograpac varchar(100),
+		numlograpac int(5),
+		complpac varchar(20),
+		bairropac varchar(50),
+		cidadepac varchar(50),
+		ufpac varchar(2),
+		rgpac bigint(12),
+		estrgpac varchar(2),
+		nomemaepac varchar(100),
+		dtnascpac date,
+        primary key(cpfpac)
+);
+
+drop table profissional;
+truncate table profissional;
+alter table profissional add foreign key(supprof) references profissional(codprof);
+create table profissional (
+		codprof int(5) auto_increment not null,
+		nomeprof varchar(100) not null,
+        senha varchar(255) not null,
+		tipoprof varchar(50),
+		supprof int(5),
+		statusprof int(1),
+		consprof varchar(20),
+        primary key(codprof)
+);
+drop table agenda;
+truncate table agenda;
+create table agenda (
+	idagenda int(5),
+	cpfcliente bigint(11),
+	idprocedimento int(5),
+	idprofissional int(5),
+	Dtabertura datetime,
+	nomeprofissional varchar(80),
+    primary key(idagenda)
+);
+
+alter table agenda add foreign key(cpfcliente) references paciente(cpfpac);
+alter table agenda add foreign key(idprocedimento) references procedimentos(id);
+alter table agenda add foreign key(idprofissional) references profissional(codprof);
+
+
+INSERT INTO agenda (idagenda, cpfcliente, idprocedimento, idprofissional, Dtabertura, nomeprofissional)
+VALUES (4, 56789012345, 2, 5, '2023-12-10 15:00:00', 'Rhuan'),
+	   (5, 78901234567, 3, 8, '2023-11-28 17:00:00', 'Rhuan'),
+	   (6, 12345678901, 2, 5, '2023-12-30 11:00:00', 'Rhuan');
+
+INSERT INTO paciente (cpfpac, nomepac, codpac, telpac, ceppac, lograpac, numlograpac, complpac, bairropac, cidadepac, ufpac, rgpac, estrgpac, nomemaepac, dtnascpac)
+VALUES
+(12345678901, 'Fulano Silva', 1, 987654321, 12345678, 'Rua A', 123, 'Ap 101', 'Centro', 'Cidade A', 'UF', 987654321, 'UF', 'Ciclana Silva', '1990-01-01'),
+(23456789012, 'Ciclano Oliveira', 2, 876543210, 23456789, 'Rua B', 456, 'Casa 202', 'Bairro B', 'Cidade B', 'UF', 876543210, 'UF', 'Beltrana Oliveira', '1985-05-15'),
+(34567890123, 'Beltrano Santos', 3, 765432109, 34567890, 'Rua C', 789, 'Casa 303', 'Bairro C', 'Cidade C', 'UF', 765432109, 'UF', 'Ciclana Santos', '1992-08-30'),
+(45678901234, 'Ciclana Souza', 4, 654321098, 45678901, 'Rua D', 101, 'Bloco 404', 'Bairro D', 'Cidade D', 'UF', 654321098, 'UF', 'Fulano Souza', '1988-04-12'),
+(56789012345, 'Fulano Oliveira', 5, 543210987, 56789012, 'Rua E', 202, 'Casa 505', 'Bairro E', 'Cidade E', 'UF', 543210987, 'UF', 'Beltrano Oliveira', '1994-11-25'),
+(67890123456, 'Beltrano Souza', 6, 432109876, 67890123, 'Rua F', 303, 'Apto 606', 'Bairro F', 'Cidade F', 'UF', 432109876, 'UF', 'Ciclano Souza', '1991-07-10'),
+(78901234567, 'Ciclano Santos', 7, 321098765, 78901234, 'Rua G', 404, 'Casa 707', 'Bairro G', 'Cidade G', 'UF', 321098765, 'UF', 'Fulana Santos', '1996-02-18'),
+(89012345678, 'Fulano Souza', 8, 210987654, 89012345, 'Rua H', 505, 'Casa 808', 'Bairro H', 'Cidade H', 'UF', 210987654, 'UF', 'Beltrano Souza', '1987-09-05'),
+(90123456789, 'Beltrana Oliveira', 9, 109876543, 90123456, 'Rua I', 606, 'Ap 909', 'Bairro I', 'Cidade I', 'UF', 109876543, 'UF', 'Ciclano Oliveira', '1993-06-22'),
+(12345678909, 'Ciclana Santos', 10, 987654321, 12345678, 'Rua J', 707, 'Casa 1010', 'Bairro J', 'Cidade J', 'UF', 987654321, 'UF', 'Fulano Santos', '1989-03-14');
+
+INSERT INTO profissional (nomeprof, tipoprof, supprof, statusprof, consprof) VALUES
+('José Silva', 1, NULL, 1, 'CRM12345'),
+('Ana Oliveira', 1, NULL, 1, 'CRM54321'),
+('Pedro Souza', 2, NULL, 1, 'COREN9876'),
+('Mariana Santos', 2, NULL, 2, 'CRTR4567'),
+('Carlos Lima', 3, NULL, 1, 'CRO8765'),
+('Camila Rodrigues', 3, 4, 3, 'CREFITO3456'),
+('Lucas Pereira', 4, 3, 1, 'CRP2345'),
+('Rafaela Costa', 4, 3, 2, 'CRN1234'),
+('Fernando Martins', 2, NULL, 1, 'CRF5678'),
+('Larissa Mendes', 2, NULL, 3, 'CREFITO7890');
+
+-- Inserir dados de exemplo na tabela resultadoexame
+INSERT INTO resultadoexame (idcliente, idprocedimentos, idprofissional, idreferencia, linkresultado, dtresultado) values
+(1, 101, 201, 301, 'http://exemplo.com/resultado1', '2023-01-15'),
+(2, 102, 202, 302, 'http://exemplo.com/resultado2', '2023-02-20'),
+(3, 103, 203, 303, 'http://exemplo.com/resultado3', '2023-03-25'),
+(4, 104, 204, 304, 'http://exemplo.com/resultado4', '2023-04-10'),
+(5, 105, 205, 305, 'http://exemplo.com/resultado5', '2023-05-05');
+
+
+select * from procedimentos;
+select * from paciente;
+select * from profissional;
+select * from agenda;
+select * from ExameseAmostras;
+
+
+
+
+
+
+
+
+
+create database biomedicina;
+
+use biomedicina;
+show tables;
+drop table ExameseAmostras;
+create table ExameseAmostras(
+		id int(5) auto_increment,
+		nomeexame varchar(50),
+		tipo bool,
+		dtrealizado date,
+		idcliente bigint(11),
+		idinforeferencia int(5),
+        primary key(id)
+);
+create table resultadoexame(
+		id int(5) auto_increment,
+		idcliente bigint(11),
+		idprocedimentos int(5),
+		idprofissional int(5),
+		idreferencia int(5),
+		linkresultado varchar(255),
+		dtresultado date,
+        primary key(id)
+);
+create table infoprocedimento(
+		id int(5) auto_increment,
+		idprocedimento int(5),
+		idprofissional int(5),
+		idpaciente bigint(11),
+		idinforeferencia int(5),
+        primary key(id)
+);
+
+alter table infoprocedimento add foreign key(idpaciente) references paciente(cpfpac);
+alter table infoprocedimento add foreign key(idprocedimento) references procedimentos(id);
+alter table infoprocedimento add foreign key(idprofissional) references profissional(codprof);
+alter table infoprocedimento add foreign key(idinforeferencia) references inforeferencia(id);
+
+
+create table procedimentos(
+		id int(5) auto_increment,
+        cod int(5),
+        descr varchar(255),
+        valor double(7,2),
+        primary key(id)
+);
+create table paciente (
+		cpfpac bigint(11) not null,
+		nomepac varchar(100) not null,
+		codpac int(10) not null,
+		telpac bigint(11) not null,
+		ceppac int(8),
+		lograpac varchar(100),
+		numlograpac int(5),
+		complpac varchar(20),
+		bairropac varchar(50),
+		cidadepac varchar(50),
+		ufpac varchar(2),
+		rgpac bigint(12),
+		estrgpac varchar(2),
+		nomemaepac varchar(100),
+		dtnascpac date,
+        primary key(cpfpac)
+);
+
+drop table profissional;
+truncate table profissional;
+alter table profissional add foreign key(supprof) references profissional(codprof);
+create table profissional (
+		codprof int(5) auto_increment not null,
+		nomeprof varchar(100) not null,
+        senha varchar(255) not null,
+		tipoprof varchar(50),
+		supprof int(5),
+		statusprof int(1),
+		consprof varchar(20),
+        primary key(codprof)
+);
+drop table agenda;
+truncate table agenda;
+create table agenda (
+	idagenda int(5),
+	cpfcliente bigint(11),
+	idprocedimento int(5),
+	idprofissional int(5),
+	Dtabertura datetime,
+	nomeprofissional varchar(80),
+    primary key(idagenda)
+);
+
+alter table agenda add foreign key(cpfcliente) references paciente(cpfpac);
+alter table agenda add foreign key(idprocedimento) references procedimentos(id);
+alter table agenda add foreign key(idprofissional) references profissional(codprof);
+
+
+INSERT INTO agenda (idagenda, cpfcliente, idprocedimento, idprofissional, Dtabertura, nomeprofissional)
+VALUES (4, 56789012345, 2, 5, '2023-12-10 15:00:00', 'Rhuan'),
+	   (5, 78901234567, 3, 8, '2023-11-28 17:00:00', 'Rhuan'),
+	   (6, 12345678901, 2, 5, '2023-12-30 11:00:00', 'Rhuan');
+
+INSERT INTO paciente (cpfpac, nomepac, codpac, telpac, ceppac, lograpac, numlograpac, complpac, bairropac, cidadepac, ufpac, rgpac, estrgpac, nomemaepac, dtnascpac)
+VALUES
+(12345678901, 'Fulano Silva', 1, 987654321, 12345678, 'Rua A', 123, 'Ap 101', 'Centro', 'Cidade A', 'UF', 987654321, 'UF', 'Ciclana Silva', '1990-01-01'),
+(23456789012, 'Ciclano Oliveira', 2, 876543210, 23456789, 'Rua B', 456, 'Casa 202', 'Bairro B', 'Cidade B', 'UF', 876543210, 'UF', 'Beltrana Oliveira', '1985-05-15'),
+(34567890123, 'Beltrano Santos', 3, 765432109, 34567890, 'Rua C', 789, 'Casa 303', 'Bairro C', 'Cidade C', 'UF', 765432109, 'UF', 'Ciclana Santos', '1992-08-30'),
+(45678901234, 'Ciclana Souza', 4, 654321098, 45678901, 'Rua D', 101, 'Bloco 404', 'Bairro D', 'Cidade D', 'UF', 654321098, 'UF', 'Fulano Souza', '1988-04-12'),
+(56789012345, 'Fulano Oliveira', 5, 543210987, 56789012, 'Rua E', 202, 'Casa 505', 'Bairro E', 'Cidade E', 'UF', 543210987, 'UF', 'Beltrano Oliveira', '1994-11-25'),
+(67890123456, 'Beltrano Souza', 6, 432109876, 67890123, 'Rua F', 303, 'Apto 606', 'Bairro F', 'Cidade F', 'UF', 432109876, 'UF', 'Ciclano Souza', '1991-07-10'),
+(78901234567, 'Ciclano Santos', 7, 321098765, 78901234, 'Rua G', 404, 'Casa 707', 'Bairro G', 'Cidade G', 'UF', 321098765, 'UF', 'Fulana Santos', '1996-02-18'),
+(89012345678, 'Fulano Souza', 8, 210987654, 89012345, 'Rua H', 505, 'Casa 808', 'Bairro H', 'Cidade H', 'UF', 210987654, 'UF', 'Beltrano Souza', '1987-09-05'),
+(90123456789, 'Beltrana Oliveira', 9, 109876543, 90123456, 'Rua I', 606, 'Ap 909', 'Bairro I', 'Cidade I', 'UF', 109876543, 'UF', 'Ciclano Oliveira', '1993-06-22'),
+(12345678909, 'Ciclana Santos', 10, 987654321, 12345678, 'Rua J', 707, 'Casa 1010', 'Bairro J', 'Cidade J', 'UF', 987654321, 'UF', 'Fulano Santos', '1989-03-14');
+
+INSERT INTO profissional (nomeprof, tipoprof, supprof, statusprof, consprof) VALUES
+('José Silva', 1, NULL, 1, 'CRM12345'),
+('Ana Oliveira', 1, NULL, 1, 'CRM54321'),
+('Pedro Souza', 2, NULL, 1, 'COREN9876'),
+('Mariana Santos', 2, NULL, 2, 'CRTR4567'),
+('Carlos Lima', 3, NULL, 1, 'CRO8765'),
+('Camila Rodrigues', 3, 4, 3, 'CREFITO3456'),
+('Lucas Pereira', 4, 3, 1, 'CRP2345'),
+('Rafaela Costa', 4, 3, 2, 'CRN1234'),
+('Fernando Martins', 2, NULL, 1, 'CRF5678'),
+('Larissa Mendes', 2, NULL, 3, 'CREFITO7890');
+
+-- Inserir dados de exemplo na tabela resultadoexame
+INSERT INTO resultadoexame (idcliente, idprocedimentos, idprofissional, idreferencia, linkresultado, dtresultado) values
+(1, 101, 201, 301, 'http://exemplo.com/resultado1', '2023-01-15'),
+(2, 102, 202, 302, 'http://exemplo.com/resultado2', '2023-02-20'),
+(3, 103, 203, 303, 'http://exemplo.com/resultado3', '2023-03-25'),
+(4, 104, 204, 304, 'http://exemplo.com/resultado4', '2023-04-10'),
+(5, 105, 205, 305, 'http://exemplo.com/resultado5', '2023-05-05');
+
+
+select * from procedimentos;
+select * from paciente;
+select * from profissional;
+select * from agenda;
+select * from ExameseAmostras;
+
+
+
+
+
+
+
+
+
