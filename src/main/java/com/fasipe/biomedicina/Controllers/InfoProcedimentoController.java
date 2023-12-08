@@ -1,6 +1,7 @@
 package com.fasipe.biomedicina.Controllers;
 
 import com.fasipe.biomedicina.Entitys.InfoProcedimento;
+import com.fasipe.biomedicina.Exception.ResourceNotFoundException;
 import com.fasipe.biomedicina.Repositorys.InfoProcedimentoRepository;
 import com.fasipe.biomedicina.Requests.RequestInfoProcedimento;
 import com.fasipe.biomedicina.Requests.RequestProcedimentos;
@@ -15,6 +16,12 @@ public class InfoProcedimentoController {
 
     @Autowired
     public InfoProcedimentoRepository infoProcedimentoRepository;
+
+    @GetMapping("/{id}")
+    public InfoProcedimento getInfoProcedimentoPorId(@PathVariable Long id) {
+        return infoProcedimentoRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Dados não encontrado com o ID: " + id));
+    }
 
     @GetMapping
     public ResponseEntity getAllInfoProcedimento(){
