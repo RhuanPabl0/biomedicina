@@ -12,6 +12,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class Agenda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

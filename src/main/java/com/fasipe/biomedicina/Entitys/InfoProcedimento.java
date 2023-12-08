@@ -3,10 +3,7 @@ package com.fasipe.biomedicina.Entitys;
 
 import com.fasipe.biomedicina.Requests.RequestInfoProcedimento;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Table(name = "infoprocedimento")
 @Entity(name = "infoprocedimento")
@@ -14,6 +11,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(of = "id")
 public class InfoProcedimento {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
