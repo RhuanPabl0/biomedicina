@@ -15,9 +15,8 @@ import lombok.*;
 public class InfoReferencia {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @ManyToOne
-    @JoinColumn(name = "idprocedimento")
-    private Procedimentos procedimentos;
+    @Column(name = "idprocedimento")
+    private Long idprocedimento;
     @Column(name = "referencia_min")
     private Double referenciamin;
     @Column(name = "referencia_max")
@@ -26,7 +25,7 @@ public class InfoReferencia {
     private String medida;
 
     public InfoReferencia(RequestInfoRefencia requestInfoRefencia){
-        this.procedimentos = requestInfoRefencia.procedimentos();
+        this.idprocedimento = requestInfoRefencia.idprocedimento();
         this.referenciamin = requestInfoRefencia.referenciamin();
         this.referenciamax = requestInfoRefencia.referenciamax();
         this.medida = requestInfoRefencia.medida();
