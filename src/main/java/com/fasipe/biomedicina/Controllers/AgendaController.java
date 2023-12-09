@@ -4,6 +4,8 @@ import com.fasipe.biomedicina.Entitys.Agenda;
 import com.fasipe.biomedicina.Entitys.Paciente;
 import com.fasipe.biomedicina.Exception.ResourceNotFoundException;
 import com.fasipe.biomedicina.Repositorys.AgendaRepository;
+import com.fasipe.biomedicina.Requests.RequestAgenda;
+import com.fasipe.biomedicina.Requests.RequestExameseAmostras;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -28,4 +30,6 @@ public class AgendaController {
         var allAgenda = agendaRepository.findAll();
         return ResponseEntity.ok(allAgenda);
     }
+
+
 }

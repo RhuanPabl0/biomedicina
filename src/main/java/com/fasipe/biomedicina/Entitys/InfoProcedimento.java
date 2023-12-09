@@ -2,6 +2,7 @@ package com.fasipe.biomedicina.Entitys;
 
 
 import com.fasipe.biomedicina.Requests.RequestInfoProcedimento;
+import com.fasipe.biomedicina.Users.User;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,11 +16,14 @@ import lombok.*;
 public class InfoProcedimento {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "idprocedimento")
     private Long idprocedimento;
+    @Column(name = "idprofissional")
     private Long idprofissional;
+    @Column(name = "idpaciente")
     private Long idpaciente;
+    @Column(name = "idinforeferencia")
     private Long idinforeferencia;
-
 
     public InfoProcedimento(RequestInfoProcedimento requestInfoProcedimento){
         this.idprocedimento = requestInfoProcedimento.idprocedimento();
@@ -27,5 +31,4 @@ public class InfoProcedimento {
         this.idpaciente = requestInfoProcedimento.idpaciente();
         this.idinforeferencia = requestInfoProcedimento.idinforeferencia();
     }
-
 }

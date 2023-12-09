@@ -16,32 +16,25 @@ import java.util.Date;
 public class Agenda {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "idagenda")
+    @Column(name = "id")
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "cpfcliente")
-    private Paciente paciente;
-
-    @ManyToOne
-    @JoinColumn(name = "idprocedimento")
-    private Procedimentos procedimentos;
-
-    @ManyToOne
-    @JoinColumn(name = "idprofissional")
-    private User user;
-    @Column(name = "Dtabertura")
+    @Column(name = "data_consulta")
     private Date dataConsulta;
-
-
-
-    // Outros atributos e métodos da classe Agenda...
-
+    @Column(name = "nome_profissional")
+    private String nomeProfissional;
+    @ManyToOne
+    @JoinColumn(name = "id_procedimento", referencedColumnName = "id")
+    private Procedimentos procedimentos;
+    @ManyToOne
+    @JoinColumn(name = "cpf_paciente", referencedColumnName = "cpfpac")
+    private Paciente paciente;
+    @ManyToOne
+    @JoinColumn(name = "id_profissional", referencedColumnName = "codprof")
+    private User user;
     public Agenda(Paciente paciente, Procedimentos procedimentos, User user, Date dataConsulta) {
         this.paciente = paciente;
         this.procedimentos = procedimentos;
         this.user = user;
         this.dataConsulta = dataConsulta;
-
     }
 }

@@ -1,8 +1,11 @@
 package com.fasipe.biomedicina.Requests;
 
-public record RequestInfoProcedimento(
+import com.fasipe.biomedicina.Entitys.InfoReferencia;
+import com.fasipe.biomedicina.Entitys.Paciente;
+import com.fasipe.biomedicina.Entitys.Procedimentos;
+import com.fasipe.biomedicina.Users.User;
 
-        Long id,
+public record RequestInfoProcedimento(
         Long idprocedimento,
         Long idprofissional,
         Long idpaciente,

@@ -1,6 +1,5 @@
 package com.fasipe.biomedicina.Controllers;
 
-import com.fasipe.biomedicina.Entitys.Procedimentos;
 import com.fasipe.biomedicina.Entitys.ResultadoExame;
 import com.fasipe.biomedicina.Exception.ResourceNotFoundException;
 import com.fasipe.biomedicina.Repositorys.ResultadoExameRepository;
@@ -26,11 +25,10 @@ public class ResultadoExameController {
         var allResultadoExame = resultadoExameRepository.findAll();
         return ResponseEntity.ok(allResultadoExame);
     }
-
     @PostMapping
     public ResponseEntity postResultadoExame(@RequestBody RequestResultadoExame data) {
-        ResultadoExame newResultadoExame = new ResultadoExame(data);
-        resultadoExameRepository.save(newResultadoExame);
+        ResultadoExame newResultado = new ResultadoExame(data);
+        resultadoExameRepository.save(newResultado);
         return ResponseEntity.ok().build();
     }
 }

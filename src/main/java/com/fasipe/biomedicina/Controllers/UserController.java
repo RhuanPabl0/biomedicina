@@ -16,8 +16,6 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-
-
     @GetMapping("/{id}")
     public User getUserPorId(@PathVariable Long id) {
         return userRepository.findById(id)
