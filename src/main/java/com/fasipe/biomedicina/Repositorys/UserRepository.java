@@ -6,4 +6,5 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     UserDetails findByLogin(String login);
+    User findByLoginIgnoreCase(String login); // Adicione esta linha para buscar por login, ignorando maiúsculas/minúsculas
 }
