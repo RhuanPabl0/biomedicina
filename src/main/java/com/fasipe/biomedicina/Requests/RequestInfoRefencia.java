@@ -5,7 +5,7 @@ import com.fasipe.biomedicina.Entitys.Procedimentos;
 
 public record RequestInfoRefencia(
         Long id,
-        Procedimentos procedimentos,
+        Long idprocedimento,
         Double referenciamin,
         Double referenciamax,
         String medida
