@@ -16,12 +16,12 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-//    @GetMapping("/{id}")
-//    public User getUserPorId(@PathVariable Long id) {
-//        return userRepository.findById(id)
-//                .orElseThrow(() -> new ResourceNotFoundException("Dados não encontrado com o ID: " + id));
-//    }
-    @GetMapping("/{login}")
+    @GetMapping("/{id}")
+    public User getUserPorId(@PathVariable Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Dados não encontrado com o ID: " + id));
+    }
+    @GetMapping("/login/{login}")
     public ResponseEntity getUserPorLogin(@PathVariable String login) {
         User user = userRepository.findByLoginIgnoreCase(login);
         if (user != null) {
