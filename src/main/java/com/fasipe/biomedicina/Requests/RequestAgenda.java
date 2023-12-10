@@ -7,7 +7,6 @@ import com.fasipe.biomedicina.Users.User;
 import java.util.Date;
 
 public record RequestAgenda(
-
         Long id,
         Paciente paciente,
         Procedimentos procedimentos,
