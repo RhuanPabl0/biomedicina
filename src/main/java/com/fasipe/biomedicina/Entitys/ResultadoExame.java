@@ -24,9 +24,12 @@ public class ResultadoExame {
     private Long idprocedimentos;
     @Column(name = "idprofissional")
     private Long idprofissional;
-
     @Column(name = "idreferencia")
     private Long idreferencia;
+    @Column(name = "valor")
+    private Long valor;
+    @Column(name = "medida")
+    private String medida;
     private String linkresultado;
     private Date dtresultado;
     public ResultadoExame(RequestResultadoExame requestResultadoExame){
@@ -34,6 +37,8 @@ public class ResultadoExame {
         this.idprocedimentos = requestResultadoExame.idprocedimentos();
         this.idprofissional = requestResultadoExame.idprofissional();
         this.idreferencia = requestResultadoExame.idreferencia();
+        this.valor = requestResultadoExame.valor();
+        this.medida = requestResultadoExame.medida();
         this.linkresultado = requestResultadoExame.linkresultado();
         this.dtresultado = requestResultadoExame.dtresultado();
     }

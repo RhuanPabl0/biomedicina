@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin(origins = "*", originPatterns = "*")
 @RestController
 @RequestMapping("/resultadoexame")
@@ -20,6 +22,12 @@ public class ResultadoExameController {
         return resultadoExameRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Dados não encontrado com o ID: " + id));
     }
+
+    @GetMapping("/profissional/{idprofissional}")
+    public List<ResultadoExame> getResultadoExamePorIdProfissional(@PathVariable Long idprofissional) {
+        return resultadoExameRepository.findByIdprofissional(idprofissional);
+    }
+
     @GetMapping
     private ResponseEntity getAllResultadoExame(){
         var allResultadoExame = resultadoExameRepository.findAll();
