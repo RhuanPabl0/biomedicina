@@ -38,6 +38,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "/agenda/byUser/{userId}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/resultadoexame").permitAll()
                         .requestMatchers(HttpMethod.GET, "/resultadoexame/{id}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/resultadoexame/profissional/{idprofissional}").permitAll()
                         .requestMatchers(HttpMethod.POST, "/resultadoexame").permitAll()
                         .requestMatchers(HttpMethod.GET, "/user").permitAll()
                         .requestMatchers(HttpMethod.GET, "/user/{id}").permitAll()
