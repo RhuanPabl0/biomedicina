@@ -15,6 +15,7 @@ public record RequestResultadoExame(
         Long idreferencia,
         Long valor,
         String medida,
+        String observacao,
         String linkresultado,
         Date dtresultado
 ) {

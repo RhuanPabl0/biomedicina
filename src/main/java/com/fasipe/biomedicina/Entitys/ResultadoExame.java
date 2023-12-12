@@ -30,6 +30,8 @@ public class ResultadoExame {
     private Long valor;
     @Column(name = "medida")
     private String medida;
+    @Column(name = "observacao")
+    private String observacao;
     private String linkresultado;
     private Date dtresultado;
     public ResultadoExame(RequestResultadoExame requestResultadoExame){
@@ -39,6 +41,7 @@ public class ResultadoExame {
         this.idreferencia = requestResultadoExame.idreferencia();
         this.valor = requestResultadoExame.valor();
         this.medida = requestResultadoExame.medida();
+        this.observacao = requestResultadoExame.observacao();
         this.linkresultado = requestResultadoExame.linkresultado();
         this.dtresultado = requestResultadoExame.dtresultado();
     }

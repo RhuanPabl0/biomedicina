@@ -50,6 +50,7 @@ public class SecurityConfiguration {
                         .requestMatchers(HttpMethod.GET, "/inforeferencia/{id}").permitAll()
                         .requestMatchers(HttpMethod.GET, "/exameseamostras").permitAll()
                         .requestMatchers(HttpMethod.GET, "/exameseamostras/{id}").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/pdf/generate").permitAll()
                         .requestMatchers(HttpMethod.POST, "/exameseamostras").permitAll()
                         .anyRequest().authenticated()
                 )
