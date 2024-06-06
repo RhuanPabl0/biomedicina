@@ -20,9 +20,10 @@ import java.util.List;
 @EqualsAndHashCode(of = "id")
 public class User implements UserDetails {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "codprof")
     private Long id;
     @Column(name = "nomeprof")
+    private String nome;
+    @Column(name = "codprof")
     private String login;
     @Column(name = "senha")
     private String password;
@@ -36,7 +37,8 @@ public class User implements UserDetails {
     @Column(name = "consprof")
     private  String cons;
 
-    public User(String login, String password, UserRole role, Integer sup,Integer status, String cons){
+    public User(String nome, String login, String password, UserRole role, Integer sup,Integer status, String cons){
+        this.nome = nome;
         this.login = login;
         this.password = password;
         this.role = role;

@@ -11,6 +11,8 @@ public record RequestAgenda(
         Paciente paciente,
         Procedimentos procedimentos,
         User user,
-        Date dataConsulta
+        Date dataConsulta,
+        String nomeProfissional,
+        String visita
 ) {
 }

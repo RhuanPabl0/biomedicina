@@ -23,7 +23,7 @@ public class Agenda {
     @Column(name = "nome_profissional")
     private String nomeProfissional;
     @ManyToOne
-    @JoinColumn(name = "id_procedimento", referencedColumnName = "id")
+    @JoinColumn(name = "id_procedimento", referencedColumnName = "cod")
     private Procedimentos procedimentos;
     @ManyToOne
     @JoinColumn(name = "cpf_paciente", referencedColumnName = "cpfpac")
@@ -31,6 +31,10 @@ public class Agenda {
     @ManyToOne
     @JoinColumn(name = "id_profissional", referencedColumnName = "codprof")
     private User user;
+    @Column(name = "visita")
+    private String visita;
+
+
     public Agenda(Paciente paciente, Procedimentos procedimentos, User user, Date dataConsulta) {
         this.paciente = paciente;
         this.procedimentos = procedimentos;

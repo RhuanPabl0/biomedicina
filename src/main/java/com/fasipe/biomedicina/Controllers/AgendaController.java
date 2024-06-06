@@ -37,6 +37,20 @@ public class AgendaController {
 
         return ResponseEntity.ok(agendaList);
     }
+
+    @GetMapping("/byVisita/{visita}")
+    public ResponseEntity getAgendaByVisita(@PathVariable String visita) {
+        List<Agenda> agendaList = agendaRepository.findByVisita(visita);
+
+        if (agendaList.isEmpty()) {
+            throw new ResourceNotFoundException("Agendas não encontradas com a visita: " + visita);
+        }
+
+        return ResponseEntity.ok(agendaList);
+    }
+
+
+
     @GetMapping
     private ResponseEntity getAllAgenda(){
         var allAgenda = agendaRepository.findAll();

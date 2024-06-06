@@ -38,7 +38,7 @@ public class AuthenticationController {
     public ResponseEntity register(@RequestBody RegisterDTO data){
         if(this.repository.findByLogin(data.login()) != null) return ResponseEntity.badRequest().build();
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        User newUser = new User(data.login(), encryptedPassword, data.role(), data.sup(), data.status(), data.cons());
+        User newUser = new User(data.nome(), data.login(), encryptedPassword, data.role(), data.sup(), data.status(), data.cons());
 
         this.repository.save(newUser);
 
