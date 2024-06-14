@@ -49,6 +49,16 @@ public class AgendaController {
         return ResponseEntity.ok(agendaList);
     }
 
+    @GetMapping("/byLoginAndVisita")
+    public ResponseEntity getAgendaByLoginAndVisita(@RequestParam String login, @RequestParam String visita) {
+        List<Agenda> agendaList = agendaRepository.findByUserLoginAndVisita(login, visita);
+
+        if (agendaList.isEmpty()) {
+            throw new ResourceNotFoundException("Agendas não encontradas com o login: " + login + " e visita: " + visita);
+        }
+
+        return ResponseEntity.ok(agendaList);
+    }
 
 
     @GetMapping
