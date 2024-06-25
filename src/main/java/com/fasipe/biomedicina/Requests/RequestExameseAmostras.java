@@ -6,7 +6,7 @@ public record RequestExameseAmostras(
         Long id,
         String nomeexame,
         Boolean tipo,
-        Date dtrealizado,
+//        Date dtrealizado,
         Long idcliente,
         Long idinforeferencia,
         Date dataHoraColeta,

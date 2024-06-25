@@ -24,8 +24,11 @@ public class ExameseAmostras {
     @Column(name = "tipo")
     private Boolean tipo;
 
-    @Column(name = "dtrealizado")
-    private Date dtrealizado;
+//    @Column(name = "dtrealizado")
+//    private Date dtrealizado;
+
+    @Column(name = "data_hora_coleta")
+    private Date dataHoraColeta;
 
     @Column(name = "idcliente")
     private Long idcliente;
@@ -33,8 +36,6 @@ public class ExameseAmostras {
     @Column(name = "idinforeferencia")
     private Long idinforeferencia;
 
-    @Column(name = "data_hora_coleta")
-    private Date dataHoraColeta;
 
     @Column(name = "nome_profissional")
     private String nomeProfissional;
@@ -66,7 +67,7 @@ public class ExameseAmostras {
     public ExameseAmostras(RequestExameseAmostras requestExameseAmostras) {
         this.nomeexame = requestExameseAmostras.nomeexame();
         this.tipo = requestExameseAmostras.tipo();
-        this.dtrealizado = requestExameseAmostras.dtrealizado();
+//        this.dtrealizado = requestExameseAmostras.dtrealizado();
         this.idcliente = requestExameseAmostras.idcliente();
         this.idinforeferencia = requestExameseAmostras.idinforeferencia();
         this.dataHoraColeta = requestExameseAmostras.dataHoraColeta();
