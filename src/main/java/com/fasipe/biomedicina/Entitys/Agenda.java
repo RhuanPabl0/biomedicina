@@ -7,7 +7,7 @@ import lombok.*;
 import java.util.Date;
 
 @Table(name = "agenda")
-@Entity(name = "agenda")
+@Entity(name = "Agenda")
 @Getter
 @Setter
 @AllArgsConstructor

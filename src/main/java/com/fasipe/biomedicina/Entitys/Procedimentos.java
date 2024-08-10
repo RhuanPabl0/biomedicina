@@ -16,7 +16,7 @@ public class Procedimentos {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "cod")
-    private Integer codProced;
+    private Long codProced;
     @Column(name = "descr")
     private String descProced;
     @Column(name = "valor")

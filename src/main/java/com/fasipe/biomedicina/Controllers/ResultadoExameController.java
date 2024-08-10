@@ -23,10 +23,17 @@ public class ResultadoExameController {
                 .orElseThrow(() -> new ResourceNotFoundException("Dados não encontrado com o ID: " + id));
     }
 
-    @GetMapping("/profissional/{idprofissional}")
-    public List<ResultadoExame> getResultadoExamePorIdProfissional(@PathVariable Long idprofissional) {
-        return resultadoExameRepository.findByIdprofissional(idprofissional);
+    @GetMapping("/byUserLogin/{login}")
+    public ResponseEntity<?> getResultadoExameByUserLogin(@PathVariable String login) {
+        List<ResultadoExame> resultadoExameList = resultadoExameRepository.findByUserLogin(login);
+
+        if (resultadoExameList.isEmpty()) {
+            return ResponseEntity.ok("Sem resultados de exame para este usuário");
+        }
+
+        return ResponseEntity.ok(resultadoExameList);
     }
+
 
     @GetMapping
     private ResponseEntity getAllResultadoExame(){
@@ -34,9 +41,9 @@ public class ResultadoExameController {
         return ResponseEntity.ok(allResultadoExame);
     }
     @PostMapping
-    public ResponseEntity postResultadoExame(@RequestBody RequestResultadoExame data) {
+    public ResponseEntity<ResultadoExame> postResultadoExame(@RequestBody RequestResultadoExame data) {
         ResultadoExame newResultado = new ResultadoExame(data);
-        resultadoExameRepository.save(newResultado);
-        return ResponseEntity.ok().build();
+        ResultadoExame savedResultado = resultadoExameRepository.save(newResultado);
+        return ResponseEntity.ok(savedResultado);
     }
 }
